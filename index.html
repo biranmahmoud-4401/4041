@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4401 | THE OVERFLOW</title>
+    <style>
+        body { background: black; color: #00FF00; font-family: monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
+        #timer { font-size: 3rem; text-shadow: 0 0 10px #00FF00; }
+        .glitch { font-size: 1rem; color: #555; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div id="timer">LOADING...</div>
+    <div class="glitch">UNIX_EPOCH_OVERFLOW_VIGIL :: 4401</div>
+
+    <script>
+        const target = new Date("January 19, 2038 03:14:07 UTC").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = target - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById('timer').innerHTML = `${days}d ${hours}h ${mins}m ${secs}s`;
+        }, 1000);
+    </script>
+</body>
+</html>
