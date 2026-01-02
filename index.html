@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Biran Mahmoud | 4401</title>
+    <title>Biran Mahmoud | 2038</title>
     <style>
         body { 
             background: #0a0a0a; color: #00FF41; 
@@ -29,21 +29,25 @@
     </style>
 </head>
 <body>
-    <div id="timer">SYNCHRONIZING...</div>
-    <div class="label">BIRAN MAHMOUD: 4401 DAYS</div>
-    <div class="end-date">TARGET: JANUARY 19, 2038 | 03:14:07 UTC</div>
+    <div id="timer">LOCATING SIGNAL...</div>
+    <div class="label">BIRAN MAHMOUD : TIME REMAINING</div>
+    <div class="end-date">EPOCH LIMIT: JANUARY 19, 2038 | 03:14:07 UTC</div>
 
     <a href="CLASSIFIED.txt" class="classified-link">ACCESS_CLASSIFIED_LOGS</a>
 
     <script>
         function updateTimer() {
-            // THE EXACT END DATE (Unix Epochalypse)
-            const endDate = "January 19, 2038 03:14:07 UTC";
-            const target = new Date(endDate).getTime(); 
+            // THE EXACT UNIX LIMIT (2147483647000 milliseconds)
+            const target = 2147483647000; 
             const now = new Date().getTime();
             
-            // OFFSET: Applied to force the "4401" start count for the Jan 1 launch
-            const diff = (target - now) + 185000000; 
+            // RAW DIFFERENCE (No offset added)
+            const diff = target - now; 
+
+            if (diff <= 0) {
+                document.getElementById('timer').innerHTML = "0d 0h 0m 0s";
+                return;
+            }
 
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -52,6 +56,7 @@
 
             document.getElementById('timer').innerHTML = `${days}d ${hours}h ${mins}m ${secs}s`;
         }
+        // Run every second
         setInterval(updateTimer, 1000);
         updateTimer();
     </script>
